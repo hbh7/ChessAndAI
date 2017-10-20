@@ -8,20 +8,12 @@ public abstract class ChessPiece {
 
 
     public String printInfo() {
-        return (position + "," + pieceName + "," + owner);
-    }
 
-    private boolean checkValidMove(String currentPos, String nextPos) {
-
-        // Run some checks first to make sure it's a valid move
-        boolean moveValid = false;
-
-        // Override atm
-        moveValid = true;
-
-        return moveValid;
+        return String.format("%s,%s,%s", position, pieceName, owner);
 
     }
+
+    abstract boolean checkValidMove(String currentPos, String nextPos);
 
     public boolean move(String toPos) {
 

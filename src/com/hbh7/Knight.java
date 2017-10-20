@@ -1,9 +1,9 @@
 package com.hbh7;
 
-public class Rook extends ChessPiece{
+public class Knight extends ChessPiece{
 
-    public Rook() {
-        pieceName = "Rook";
+    public Knight() {
+        pieceName = "Knight";
         
     }
 

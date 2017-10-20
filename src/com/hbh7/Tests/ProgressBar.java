@@ -1,4 +1,4 @@
-package com.hbh7;
+package com.hbh7.Tests;
 
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
