@@ -2,9 +2,10 @@ package com.hbh7;
 
 public class Queen extends ChessPiece{
 
-    public Queen() {
-        pieceName = "Queen";
-        
+    public Queen(String owner) {
+        super(owner);
+        pieceType = "Queen";
+        pointValue = 5;
     }
 
     boolean checkValidMove(String currentPos, String nextPos) {

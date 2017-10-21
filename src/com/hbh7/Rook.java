@@ -2,9 +2,10 @@ package com.hbh7;
 
 public class Rook extends ChessPiece{
 
-    public Rook() {
-        pieceName = "Rook";
-        
+    public Rook(String owner) {
+        super(owner);
+        pieceType = "Rook";
+        pointValue = 4;
     }
 
     boolean checkValidMove(String currentPos, String nextPos) {

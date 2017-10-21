@@ -2,9 +2,10 @@ package com.hbh7;
 
 public class Pawn extends ChessPiece{
 
-    public Pawn() {
-        pieceName = "Pawn";
-        
+    public Pawn(String owner) {
+        super(owner);
+        pieceType = "Pawn";
+        pointValue = 1;
     }
 
     boolean checkValidMove(String currentPos, String nextPos) {

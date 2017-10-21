@@ -2,9 +2,10 @@ package com.hbh7;
 
 public class Bishop extends ChessPiece{
 
-    public Bishop() {
-        pieceName = "Bishop";
-        
+    public Bishop(String owner) {
+        super(owner);
+        pieceType = "Bishop";
+        pointValue = 3;
     }
 
     boolean checkValidMove(String currentPos, String nextPos) {

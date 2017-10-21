@@ -3,13 +3,18 @@ package com.hbh7;
 public abstract class ChessPiece {
 
     String position    = "";
-    String pieceName   = "";
+    String pieceType = "";
     String owner       = "";
+    int pointValue     = 0;
 
+    public ChessPiece(String owner, String position) {
+        this.owner = owner;
+        this.position = position;
+    }
 
     public String printInfo() {
 
-        return String.format("%s,%s,%s", position, pieceName, owner);
+        return String.format("%s,%s,%s", position, pieceType, owner);
 
     }
 
