@@ -1,6 +1,8 @@
 package com.hbh7;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
 
@@ -109,12 +111,47 @@ public class Main {
             }
         }
 
-        System.out.println(boardArray[0][0].pieceType);
-
-        System.out.println(blackBishop1.printInfo());
 
 
-        drawGameBoard(boardArray);
+
+    }
+
+    public static void gameLoop (ChessPiece[][] boardArray) {
+        boolean gameIsWon = false;
+        int playerNum = 1;
+
+        while(gameIsWon == false) {
+            drawGameBoard(boardArray);
+
+            tryPlayerInput(playerNum, boardArray);
+
+
+            if (playerNum == 1) {
+                playerNum = 2;
+            } else {
+                playerNum = 1;
+            }
+
+        }
+    }
+
+    public static String tryPlayerInput (int playerNum, ChessPiece[][] boardArray) {
+        Scanner scanner = new Scanner(System.in);
+
+        String playerMove = scanner.next();
+
+        String[] stringParts = playerMove.split(" to ");
+
+        String originalPos = stringParts[0];
+        String newPos = stringParts[1];
+
+        String[] arrayTemp = originalPos.split("");
+        String row = arrayTemp[0];
+        String column = arrayTemp[1];
+        switch(row){
+            case "A":
+                
+        }
 
 
     }
@@ -138,7 +175,6 @@ public class Main {
             System.out.println("|                                                                                                                               |");
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
         }
-
 
     }
 }
