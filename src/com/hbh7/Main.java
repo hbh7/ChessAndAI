@@ -67,14 +67,14 @@ public class Main {
 
         ChessPiece[][] boardArray = new ChessPiece[width][height];
 
-        boardArray[0][0] = whitePawn1;
-        boardArray[0][1] = whitePawn2;
-        boardArray[0][2] = whitePawn3;
-        boardArray[0][3] = whitePawn4;
-        boardArray[0][4] = whitePawn5;
-        boardArray[0][5] = whitePawn6;
-        boardArray[0][6] = whitePawn7;
-        boardArray[0][7] = whitePawn8;
+        boardArray[0][0] = whiteRook1;
+        boardArray[0][1] = whiteKnight1;
+        boardArray[0][2] = whiteBishop1;
+        boardArray[0][3] = whiteQueen1;
+        boardArray[0][4] = whiteKing1;
+        boardArray[0][5] = whiteBishop2;
+        boardArray[0][6] = whiteKnight2;
+        boardArray[0][7] = whiteRook2;
 
         boardArray[1][0] = whitePawn1;
         boardArray[1][1] = whitePawn2;
@@ -85,23 +85,23 @@ public class Main {
         boardArray[1][6] = whitePawn7;
         boardArray[1][7] = whitePawn8;
 
-        boardArray[6][0] = whitePawn1;
-        boardArray[6][1] = whitePawn2;
-        boardArray[6][2] = whitePawn3;
-        boardArray[6][3] = whitePawn4;
-        boardArray[6][4] = whitePawn5;
-        boardArray[6][5] = whitePawn6;
-        boardArray[6][6] = whitePawn7;
-        boardArray[6][7] = whitePawn8;
+        boardArray[6][0] = blackPawn1;
+        boardArray[6][1] = blackPawn2;
+        boardArray[6][2] = blackPawn3;
+        boardArray[6][3] = blackPawn4;
+        boardArray[6][4] = blackPawn5;
+        boardArray[6][5] = blackPawn6;
+        boardArray[6][6] = blackPawn7;
+        boardArray[6][7] = blackPawn8;
 
-        boardArray[7][0] = whitePawn1;
-        boardArray[7][1] = whitePawn2;
-        boardArray[7][2] = whitePawn3;
-        boardArray[7][3] = whitePawn4;
-        boardArray[7][4] = whitePawn5;
-        boardArray[7][5] = whitePawn6;
-        boardArray[7][6] = whitePawn7;
-        boardArray[7][7] = whitePawn8;
+        boardArray[7][0] = blackRook1;
+        boardArray[7][1] = blackKnight1;
+        boardArray[7][2] = blackBishop1;
+        boardArray[7][3] = blackQueen1;
+        boardArray[7][4] = blackKing1;
+        boardArray[7][5] = blackBishop2;
+        boardArray[7][6] = blackKnight2;
+        boardArray[7][7] = blackRook2;
 
         for (int i = 2; i < 6; i++) {
             for (int k = 0; k < 8; k++) {
@@ -125,15 +125,17 @@ public class Main {
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
 
         for (int i = 0; i < 8; i++) {
+            System.out.println("|                                                                                                                               |");
             System.out.print("| ");
             for (int k = 0; k < 8; k++) {
                 if (boardArray[i][k] == null) {
                     System.out.print(" Empty Space " + " | ");
                 } else {
-                    System.out.print(boardArray[i][k].printInfo() + " | ");
+                    System.out.print(boardArray[i][k].displayPiece() + " | ");
                 }
             }
             System.out.println();
+            System.out.println("|                                                                                                                               |");
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
         }
 
