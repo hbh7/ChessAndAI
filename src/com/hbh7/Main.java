@@ -1,8 +1,10 @@
 package com.hbh7;
 
+import java.util.Arrays;
+
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         System.out.println("Welcome to Chess!");
 
@@ -19,46 +21,140 @@ public class Main {
                
          */
 
-        Bishop whiteBishop1 = new Bishop("White");
-        Bishop whiteBishop2 = new Bishop("White");
-        Bishop blackBishop1 = new Bishop("Black");
-        Bishop blackBishop2 = new Bishop("Black");
+        ChessPiece whiteBishop1 = new ChessPiece("Bishop","White", "A3");
+        ChessPiece whiteBishop2 = new ChessPiece("Bishop","White", "A6");
+        ChessPiece blackBishop1 = new ChessPiece("Bishop","Black", "H3");
+        ChessPiece blackBishop2 = new ChessPiece("Bishop","Black", "H6");
 
-        Rook whiteRook1 = new Rook("White");
-        Rook whiteRook2 = new Rook("White");
-        Rook blackRook1 = new Rook("Black");
-        Rook blackRook2 = new Rook("Black");
+        ChessPiece whiteRook1 = new ChessPiece("Rook","White", "A1");
+        ChessPiece whiteRook2 = new ChessPiece("Rook","White", "A8");
+        ChessPiece blackRook1 = new ChessPiece("Rook","Black", "H1");
+        ChessPiece blackRook2 = new ChessPiece("Rook","Black", "H8");
 
-        Knight whiteKnight1 = new Knight("White");
-        Knight whiteKnight2 = new Knight("white");
-        Knight blackKnight1 = new Knight("Black");
-        Knight blackKnight2 = new Knight("Black");
+        ChessPiece whiteKnight1 = new ChessPiece("Knight","White", "A2");
+        ChessPiece whiteKnight2 = new ChessPiece("Knight","white", "A7");
+        ChessPiece blackKnight1 = new ChessPiece("Knight","Black", "H2");
+        ChessPiece blackKnight2 = new ChessPiece("Knight","Black", "H7");
 
-        Queen whiteQueen1 = new Queen("White");
-        Queen whiteQueen2 = new Queen("White");
+        ChessPiece whiteQueen1 = new ChessPiece("Queen","White", "A4");
+        ChessPiece blackQueen1 = new ChessPiece("Queen","Black", "H4");
 
-        King blackKing1 = new King("Black");
-        King blackKing2 = new King("Black");
+        ChessPiece whiteKing1 = new ChessPiece("King","White", "A5");
+        ChessPiece blackKing1 = new ChessPiece("King","Black", "H5");
 
-        Pawn whitePawn1 = new Pawn("White");
-        Pawn whitePawn2 = new Pawn("white");
-        Pawn whitePawn3 = new Pawn("White");
-        Pawn whitePawn4 = new Pawn("white");
-        Pawn whitePawn5 = new Pawn("White");
-        Pawn whitePawn6 = new Pawn("white");
-        Pawn whitePawn7 = new Pawn("White");
-        Pawn whitePawn8 = new Pawn("white");
-        Pawn blackPawn1 = new Pawn("Black");
-        Pawn blackPawn2 = new Pawn("Black");
-        Pawn blackPawn3 = new Pawn("Black");
-        Pawn blackPawn4 = new Pawn("Black");
-        Pawn blackPawn5 = new Pawn("Black");
-        Pawn blackPawn6 = new Pawn("Black");
-        Pawn blackPawn7 = new Pawn("Black");
-        Pawn blackPawn8 = new Pawn("Black");
-        
-        // Debug/testing
+        ChessPiece whitePawn1 = new ChessPiece("Pawn","White", "B1");
+        ChessPiece whitePawn2 = new ChessPiece("Pawn","white", "B2");
+        ChessPiece whitePawn3 = new ChessPiece("Pawn","White", "B3");
+        ChessPiece whitePawn4 = new ChessPiece("Pawn","white", "B4");
+        ChessPiece whitePawn5 = new ChessPiece("Pawn","White", "B5");
+        ChessPiece whitePawn6 = new ChessPiece("Pawn","white", "B6");
+        ChessPiece whitePawn7 = new ChessPiece("Pawn","White", "B7");
+        ChessPiece whitePawn8 = new ChessPiece("Pawn","white", "B8");
+        ChessPiece blackPawn1 = new ChessPiece("Pawn","Black", "G1");
+        ChessPiece blackPawn2 = new ChessPiece("Pawn","Black", "G2");
+        ChessPiece blackPawn3 = new ChessPiece("Pawn","Black", "G3");
+        ChessPiece blackPawn4 = new ChessPiece("Pawn","Black", "G4");
+        ChessPiece blackPawn5 = new ChessPiece("Pawn","Black", "G5");
+        ChessPiece blackPawn6 = new ChessPiece("Pawn","Black", "G6");
+        ChessPiece blackPawn7 = new ChessPiece("Pawn","Black", "G7");
+        ChessPiece blackPawn8 = new ChessPiece("Pawn","Black", "G8");
+
+        // idk its probably better than nothing. starting point ¯\_(ツ)_/¯
+
+        int width = 8;
+        int height = 8;
+        int totalPieces = width * height;
+
+        ChessPiece[][] boardArray = new ChessPiece[width][height];
+
+        boardArray[0][0] = whitePawn1;
+        boardArray[0][1] = whitePawn2;
+        boardArray[0][2] = whitePawn3;
+        boardArray[0][3] = whitePawn4;
+        boardArray[0][4] = whitePawn5;
+        boardArray[0][5] = whitePawn6;
+        boardArray[0][6] = whitePawn7;
+        boardArray[0][7] = whitePawn8;
+
+        boardArray[1][0] = whitePawn1;
+        boardArray[1][1] = whitePawn2;
+        boardArray[1][2] = whitePawn3;
+        boardArray[1][3] = whitePawn4;
+        boardArray[1][4] = whitePawn5;
+        boardArray[1][5] = whitePawn6;
+        boardArray[1][6] = whitePawn7;
+        boardArray[1][7] = whitePawn8;
+
+        boardArray[6][0] = whitePawn1;
+        boardArray[6][1] = whitePawn2;
+        boardArray[6][2] = whitePawn3;
+        boardArray[6][3] = whitePawn4;
+        boardArray[6][4] = whitePawn5;
+        boardArray[6][5] = whitePawn6;
+        boardArray[6][6] = whitePawn7;
+        boardArray[6][7] = whitePawn8;
+
+        boardArray[7][0] = whitePawn1;
+        boardArray[7][1] = whitePawn2;
+        boardArray[7][2] = whitePawn3;
+        boardArray[7][3] = whitePawn4;
+        boardArray[7][4] = whitePawn5;
+        boardArray[7][5] = whitePawn6;
+        boardArray[7][6] = whitePawn7;
+        boardArray[7][7] = whitePawn8;
+
+        for (int i = 2; i < 6; i++) {
+            for (int k = 0; k < 8; k++) {
+                boardArray[i][k] = null;
+            }
+        }
+
+        System.out.println(boardArray[0][0].pieceType);
+
         System.out.println(blackBishop1.printInfo());
+
+
+        drawGameBoard(boardArray);
+
+
+    }
+
+    public static void drawGameBoard (ChessPiece[][] boardArray) {
+        // well this might be hard, good luck future self!!!
+
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
+
+        for (int i = 0; i < 8; i++) {
+            System.out.print("| ");
+            for (int k = 0; k < 8; k++) {
+                if (boardArray[i][k] == null) {
+                    System.out.print(" Empty Space " + " | ");
+                } else {
+                    System.out.print(boardArray[i][k].printInfo() + " | ");
+                }
+            }
+            System.out.println();
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
+        }
+
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

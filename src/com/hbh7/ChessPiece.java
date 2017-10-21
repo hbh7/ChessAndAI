@@ -1,13 +1,14 @@
 package com.hbh7;
 
-public abstract class ChessPiece {
+public class ChessPiece {
 
     String position    = "";
     String pieceType = "";
     String owner       = "";
     int pointValue     = 0;
 
-    public ChessPiece(String owner, String position) {
+    public ChessPiece(String pieceType, String owner, String position) {
+        this.pieceType = pieceType;
         this.owner = owner;
         this.position = position;
     }
@@ -18,7 +19,17 @@ public abstract class ChessPiece {
 
     }
 
-    abstract boolean checkValidMove(String currentPos, String nextPos);
+    public boolean checkValidMove(String currentPos, String nextPos) {
+
+        // Run some checks first to make sure it's a valid move
+        boolean moveValid = false;
+
+        // Override atm lol
+        moveValid = true;
+
+        return moveValid;
+
+    }
 
     public boolean move(String toPos) {
 
