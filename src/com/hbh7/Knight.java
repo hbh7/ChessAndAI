@@ -9,7 +9,7 @@ public class Knight extends ChessPiece{
         pieceType = "Knight";
     }
 
-    public boolean checkValidMove(String originalRow, String originalColumn, String newRow, String newColumn) {
+    public boolean checkValidMove(String originalRow, int originalColumn, String newRow, int newColumn) {
         return false;
     }
 

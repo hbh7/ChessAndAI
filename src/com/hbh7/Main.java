@@ -171,7 +171,7 @@ public class Main {
 
     public static void doPlayerInput(int playerNum, ChessPiece[][] boardArray) {
 
-        System.out.print("Enter an action: [Format: A1 to A2] ");
+        System.out.print("Enter an action: [Format: A2 to A3] ");
         Scanner scanner = new Scanner(System.in);
 
         String playerMove = scanner.nextLine();
@@ -185,13 +185,17 @@ public class Main {
         String[] newPosSplit = newPos.split("");
 
         String originalRow = originalPosSplit[0].toUpperCase();
-        String originalColumn = originalPosSplit[1];
+        int originalColumn = Integer.parseInt(originalPosSplit[1]);
         String newRow = newPosSplit[0].toUpperCase();
-        String newColumn = newPosSplit[1];
+        int newColumn = Integer.parseInt(newPosSplit[1]);
 
-        if(boardArray[convertToArrayIndex(originalRow)][convertToArrayIndex(originalColumn)].checkValidMove(originalRow, originalColumn, newRow, newColumn)) {
-            boardArray[convertToArrayIndex(newRow)][convertToArrayIndex(newColumn)] = boardArray[convertToArrayIndex(originalRow)][convertToArrayIndex(originalColumn)];
-            boardArray[convertToArrayIndex(originalRow)][convertToArrayIndex(originalColumn)] = null;
+        System.out.println(convertToArrayIndex(originalRow));
+        System.out.println(convertToArrayIndex(originalColumn));
+        System.out.println(boardArray[convertToArrayIndex(originalRow)][convertToArrayIndex(originalColumn)]);
+        System.out.println(boardArray[convertToArrayIndex(originalColumn)][convertToArrayIndex(originalRow)]);
+        if(boardArray[convertToArrayIndex(originalColumn)][convertToArrayIndex(originalRow)].checkValidMove(originalRow, originalColumn, newRow, newColumn)) {
+            boardArray[convertToArrayIndex(newColumn)][convertToArrayIndex(newRow)] = boardArray[convertToArrayIndex(originalColumn)][convertToArrayIndex(originalRow)];
+            boardArray[convertToArrayIndex(originalColumn)][convertToArrayIndex(originalRow)] = null;
         } else {
             System.out.println("Sorry, invalid move!");
         }
@@ -203,13 +207,13 @@ public class Main {
     }
 
     public static int convertToArrayIndex(String pos){
-        // a: 97
-        char c = pos.toCharArray()[0];
-        return (int) c - 97;
+        // A: 65
+        char c = pos.toUpperCase().toCharArray()[0];
+        return ((int) c ) - 65;
     }
 
     public static String convertToLetter(int pos){
-        return Character.toString((char) (pos + 97));
+        return Character.toString((char) (pos + 65));
     }
 
     public static void drawGameBoard (ChessPiece[][] boardArray) {

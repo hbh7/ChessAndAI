@@ -13,13 +13,15 @@ public class Pawn extends ChessPiece{
         super("Pawn", owner, position);
     }
 
-    public boolean checkValidMove(String originalRow, String originalColumn, String newRow, String newColumn) {
+    public boolean checkValidMove(String originalRow, int originalColumn, String newRow, int newColumn) {
 
         // Run some checks first to make sure it's a valid move
         boolean moveValid = false;
 
         // Override atm lol
         moveValid = true;
+
+        System.out.println("Running!");
 
         return moveValid;
 

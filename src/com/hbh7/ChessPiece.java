@@ -49,7 +49,7 @@ public abstract class ChessPiece {
 
     }
 
-    public abstract boolean checkValidMove(String originalRow, String originalColumn, String newRow, String newColumn);
+    public abstract boolean checkValidMove(String originalRow, int originalColumn, String newRow, int newColumn);
 
     public abstract boolean move(String toPos);
 
