@@ -2,10 +2,19 @@ package com.hbh7;
 
 public class Bishop extends ChessPiece{
 
+    private int pointValue = 3;
+
     public Bishop(String pieceType, String owner, String position) {
         super(pieceType, owner, position);
         pieceType = "Bishop";
-        pointValue = 3;
+    }
+
+    public boolean checkValidMove(String originalRow, String originalColumn, String newRow, String newColumn) {
+        return false;
+    }
+
+    public boolean move(String toPos) {
+        return false;
     }
 
     public boolean checkValidMove(String currentPos, String nextPos) {

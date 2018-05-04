@@ -2,13 +2,13 @@ package com.hbh7;
 
 import java.util.Objects;
 
-public class ChessPiece {
+public abstract class ChessPiece {
 
-    String position    = "";
-    String pieceType   = "";
-    String owner       = "";
-    String displayName = "";
-    int pointValue     = 0;
+    private String position    = "";
+    private String pieceType   = "";
+    private String owner       = "";
+    private String displayName = "";
+    private int pointValue     = 0;
 
     public ChessPiece(String pieceType, String owner, String position) {
         this.pieceType = pieceType;
@@ -49,49 +49,8 @@ public class ChessPiece {
 
     }
 
-    public boolean checkValidMove(String pieceType, String currentPos, String nextPos) {
+    public abstract boolean checkValidMove(String originalRow, String originalColumn, String newRow, String newColumn);
 
-        // Run some checks first to make sure it's a valid move
-        boolean moveValid;
-
-        switch (pieceType.toLowerCase()) {
-            case "pawn":
-                moveValid = true; // lol
-                break;
-            case "bishop":
-                moveValid = true; // lol
-                break;
-            case "rook":
-                moveValid = true; // lol
-                break;
-            case "knight":
-                moveValid = true; // lol
-                break;
-            case "king":
-                moveValid = true; // lol
-                break;
-            case "queen":
-                moveValid = true; // lol
-                break;
-            default:
-                moveValid = false; // lol
-                break;
-        }
-
-        return moveValid;
-
-    }
-
-    public boolean move(String toPos) {
-
-        // Test if valid move
-        if (checkValidMove(pieceType, position, toPos)) {
-            position = toPos;
-            return true;
-        } else {
-            return false;
-        }
-
-    }
+    public abstract boolean move(String toPos);
 
 }

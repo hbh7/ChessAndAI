@@ -1,7 +1,5 @@
 package com.hbh7;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -22,7 +20,7 @@ public class Main {
         H1 H2 H3 H4 H5 H6 H7 H8
                
          */
-
+        /*
         ChessPiece whiteBishop1 = new ChessPiece("Bishop","White", "A3");
         ChessPiece whiteBishop2 = new ChessPiece("Bishop","White", "A6");
         ChessPiece blackBishop1 = new ChessPiece("Bishop","Black", "H3");
@@ -60,8 +58,45 @@ public class Main {
         ChessPiece blackPawn6 = new ChessPiece("Pawn","Black", "G6");
         ChessPiece blackPawn7 = new ChessPiece("Pawn","Black", "G7");
         ChessPiece blackPawn8 = new ChessPiece("Pawn","Black", "G8");
+        */
 
-        // idk its probably better than nothing. starting point ¯\_(ツ)_/¯
+        ChessPiece whiteBishop1 = new Bishop("Bishop","White", "A3");
+        ChessPiece whiteBishop2 = new Bishop("Bishop","White", "A6");
+        ChessPiece blackBishop1 = new Bishop("Bishop","Black", "H3");
+        ChessPiece blackBishop2 = new Bishop("Bishop","Black", "H6");
+
+        ChessPiece whiteRook1 = new Rook("Rook","White", "A1");
+        ChessPiece whiteRook2 = new Rook("Rook","White", "A8");
+        ChessPiece blackRook1 = new Rook("Rook","Black", "H1");
+        ChessPiece blackRook2 = new Rook("Rook","Black", "H8");
+
+        ChessPiece whiteKnight1 = new Knight("Knight","White", "A2");
+        ChessPiece whiteKnight2 = new Knight("Knight","white", "A7");
+        ChessPiece blackKnight1 = new Knight("Knight","Black", "H2");
+        ChessPiece blackKnight2 = new Knight("Knight","Black", "H7");
+
+        ChessPiece whiteQueen1 = new Queen("Queen","White", "A4");
+        ChessPiece blackQueen1 = new Queen("Queen","Black", "H4");
+
+        ChessPiece whiteKing1 = new King("King","White", "A5");
+        ChessPiece blackKing1 = new King("King","Black", "H5");
+
+        ChessPiece whitePawn1 = new Pawn("White", "B1");
+        ChessPiece whitePawn2 = new Pawn("white", "B2");
+        ChessPiece whitePawn3 = new Pawn("White", "B3");
+        ChessPiece whitePawn4 = new Pawn("white", "B4");
+        ChessPiece whitePawn5 = new Pawn("White", "B5");
+        ChessPiece whitePawn6 = new Pawn("white", "B6");
+        ChessPiece whitePawn7 = new Pawn("White", "B7");
+        ChessPiece whitePawn8 = new Pawn("white", "B8");
+        ChessPiece blackPawn1 = new Pawn("Black", "G1");
+        ChessPiece blackPawn2 = new Pawn("Black", "G2");
+        ChessPiece blackPawn3 = new Pawn("Black", "G3");
+        ChessPiece blackPawn4 = new Pawn("Black", "G4");
+        ChessPiece blackPawn5 = new Pawn("Black", "G5");
+        ChessPiece blackPawn6 = new Pawn("Black", "G6");
+        ChessPiece blackPawn7 = new Pawn("Black", "G7");
+        ChessPiece blackPawn8 = new Pawn("Black", "G8");
 
         int width = 8;
         int height = 8;
@@ -111,19 +146,18 @@ public class Main {
             }
         }
 
-
-
+        gameLoop(boardArray);
 
     }
 
     public static void gameLoop (ChessPiece[][] boardArray) {
-        boolean gameIsWon = false;
+        boolean gameWon = false;
         int playerNum = 1;
 
-        while(gameIsWon == false) {
+        while(!gameWon) {
             drawGameBoard(boardArray);
 
-            tryPlayerInput(playerNum, boardArray);
+            doPlayerInput(playerNum, boardArray);
 
 
             if (playerNum == 1) {
@@ -135,35 +169,58 @@ public class Main {
         }
     }
 
-    public static String tryPlayerInput (int playerNum, ChessPiece[][] boardArray) {
+    public static void doPlayerInput(int playerNum, ChessPiece[][] boardArray) {
+
+        System.out.print("Enter an action: [Format: A1 to A2] ");
         Scanner scanner = new Scanner(System.in);
 
-        String playerMove = scanner.next();
+        String playerMove = scanner.nextLine();
 
         String[] stringParts = playerMove.split(" to ");
 
         String originalPos = stringParts[0];
         String newPos = stringParts[1];
 
-        String[] arrayTemp = originalPos.split("");
-        String row = arrayTemp[0];
-        String column = arrayTemp[1];
-        switch(row){
-            case "A":
-                
+        String[] originalPosSplit = originalPos.split("");
+        String[] newPosSplit = newPos.split("");
+
+        String originalRow = originalPosSplit[0].toUpperCase();
+        String originalColumn = originalPosSplit[1];
+        String newRow = newPosSplit[0].toUpperCase();
+        String newColumn = newPosSplit[1];
+
+        if(boardArray[convertToArrayIndex(originalRow)][convertToArrayIndex(originalColumn)].checkValidMove(originalRow, originalColumn, newRow, newColumn)) {
+            boardArray[convertToArrayIndex(newRow)][convertToArrayIndex(newColumn)] = boardArray[convertToArrayIndex(originalRow)][convertToArrayIndex(originalColumn)];
+            boardArray[convertToArrayIndex(originalRow)][convertToArrayIndex(originalColumn)] = null;
+        } else {
+            System.out.println("Sorry, invalid move!");
         }
 
+    }
 
+    public static int convertToArrayIndex(int pos) {
+        return pos - 1;
+    }
+
+    public static int convertToArrayIndex(String pos){
+        // a: 97
+        char c = pos.toCharArray()[0];
+        return (int) c - 97;
+    }
+
+    public static String convertToLetter(int pos){
+        return Character.toString((char) (pos + 97));
     }
 
     public static void drawGameBoard (ChessPiece[][] boardArray) {
         // well this might be hard, good luck future self!!!
 
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("  |       A       |       B       |       C       |       D       |       E       |       F       |       G       |       H       |");
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
 
         for (int i = 0; i < 8; i++) {
-            System.out.println("|                                                                                                                               |");
-            System.out.print("| ");
+            System.out.println("  |                                                                                                                               |");
+            System.out.print((i+1) + " | ");
             for (int k = 0; k < 8; k++) {
                 if (boardArray[i][k] == null) {
                     System.out.print(" Empty Space " + " | ");
@@ -172,8 +229,8 @@ public class Main {
                 }
             }
             System.out.println();
-            System.out.println("|                                                                                                                               |");
-            System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println("  |                                                                                                                               |");
+            System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
         }
 
     }
