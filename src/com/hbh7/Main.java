@@ -9,7 +9,6 @@ public class Main {
         System.out.println("Welcome to Chess!");
 
         /* Board Layout
-        
         A1 A2 A3 A4 A5 A6 A7 A8
         B1 B2 B3 B4 B5 B6 B7 B8
         C1 C2 C3 C4 C5 C6 C7 C8
@@ -18,47 +17,7 @@ public class Main {
         F1 F2 F3 F4 F5 F6 F7 F8
         G1 G2 G3 G4 G5 G6 G7 G8
         H1 H2 H3 H4 H5 H6 H7 H8
-               
          */
-        /*
-        ChessPiece whiteBishop1 = new ChessPiece("Bishop","White", "A3");
-        ChessPiece whiteBishop2 = new ChessPiece("Bishop","White", "A6");
-        ChessPiece blackBishop1 = new ChessPiece("Bishop","Black", "H3");
-        ChessPiece blackBishop2 = new ChessPiece("Bishop","Black", "H6");
-
-        ChessPiece whiteRook1 = new ChessPiece("Rook","White", "A1");
-        ChessPiece whiteRook2 = new ChessPiece("Rook","White", "A8");
-        ChessPiece blackRook1 = new ChessPiece("Rook","Black", "H1");
-        ChessPiece blackRook2 = new ChessPiece("Rook","Black", "H8");
-
-        ChessPiece whiteKnight1 = new ChessPiece("Knight","White", "A2");
-        ChessPiece whiteKnight2 = new ChessPiece("Knight","white", "A7");
-        ChessPiece blackKnight1 = new ChessPiece("Knight","Black", "H2");
-        ChessPiece blackKnight2 = new ChessPiece("Knight","Black", "H7");
-
-        ChessPiece whiteQueen1 = new ChessPiece("Queen","White", "A4");
-        ChessPiece blackQueen1 = new ChessPiece("Queen","Black", "H4");
-
-        ChessPiece whiteKing1 = new ChessPiece("King","White", "A5");
-        ChessPiece blackKing1 = new ChessPiece("King","Black", "H5");
-
-        ChessPiece whitePawn1 = new ChessPiece("Pawn","White", "B1");
-        ChessPiece whitePawn2 = new ChessPiece("Pawn","white", "B2");
-        ChessPiece whitePawn3 = new ChessPiece("Pawn","White", "B3");
-        ChessPiece whitePawn4 = new ChessPiece("Pawn","white", "B4");
-        ChessPiece whitePawn5 = new ChessPiece("Pawn","White", "B5");
-        ChessPiece whitePawn6 = new ChessPiece("Pawn","white", "B6");
-        ChessPiece whitePawn7 = new ChessPiece("Pawn","White", "B7");
-        ChessPiece whitePawn8 = new ChessPiece("Pawn","white", "B8");
-        ChessPiece blackPawn1 = new ChessPiece("Pawn","Black", "G1");
-        ChessPiece blackPawn2 = new ChessPiece("Pawn","Black", "G2");
-        ChessPiece blackPawn3 = new ChessPiece("Pawn","Black", "G3");
-        ChessPiece blackPawn4 = new ChessPiece("Pawn","Black", "G4");
-        ChessPiece blackPawn5 = new ChessPiece("Pawn","Black", "G5");
-        ChessPiece blackPawn6 = new ChessPiece("Pawn","Black", "G6");
-        ChessPiece blackPawn7 = new ChessPiece("Pawn","Black", "G7");
-        ChessPiece blackPawn8 = new ChessPiece("Pawn","Black", "G8");
-        */
 
         ChessPiece whiteBishop1 = new Bishop("Bishop","White", "A3");
         ChessPiece whiteBishop2 = new Bishop("Bishop","White", "A6");
@@ -150,15 +109,23 @@ public class Main {
 
     }
 
-    public static void gameLoop (ChessPiece[][] boardArray) {
+    private static void gameLoop(ChessPiece[][] boardArray) {
         boolean gameWon = false;
         int playerNum = 1;
 
         while(!gameWon) {
             drawGameBoard(boardArray);
 
-            doPlayerInput(playerNum, boardArray);
+            if(playerNum == 1)
+                System.out.println("Ready Player One (White)");
+            else
+                System.out.println("Ready Player Two (Black)");
 
+            boolean moveSucceeded = false;
+            while (!moveSucceeded) {
+                if(doPlayerInput(playerNum, boardArray))
+                    moveSucceeded = true;
+            }
 
             if (playerNum == 1) {
                 playerNum = 2;
@@ -169,7 +136,7 @@ public class Main {
         }
     }
 
-    public static void doPlayerInput(int playerNum, ChessPiece[][] boardArray) {
+    private static boolean doPlayerInput(int playerNum, ChessPiece[][] boardArray) {
 
         System.out.print("Enter an action: [Format: A2 to A3] ");
         Scanner scanner = new Scanner(System.in);
@@ -184,20 +151,18 @@ public class Main {
         String[] originalPosSplit = originalPos.split("");
         String[] newPosSplit = newPos.split("");
 
-        String originalRow = originalPosSplit[0].toUpperCase();
-        int originalColumn = Integer.parseInt(originalPosSplit[1]);
-        String newRow = newPosSplit[0].toUpperCase();
-        int newColumn = Integer.parseInt(newPosSplit[1]);
+        int originalRow = Integer.parseInt(originalPosSplit[1]);
+        String originalColumn = originalPosSplit[0].toUpperCase();
+        int newRow = Integer.parseInt(newPosSplit[1]);
+        String newColumn = newPosSplit[0].toUpperCase();
 
-        System.out.println(convertToArrayIndex(originalRow));
-        System.out.println(convertToArrayIndex(originalColumn));
-        System.out.println(boardArray[convertToArrayIndex(originalRow)][convertToArrayIndex(originalColumn)]);
-        System.out.println(boardArray[convertToArrayIndex(originalColumn)][convertToArrayIndex(originalRow)]);
-        if(boardArray[convertToArrayIndex(originalColumn)][convertToArrayIndex(originalRow)].checkValidMove(originalRow, originalColumn, newRow, newColumn)) {
-            boardArray[convertToArrayIndex(newColumn)][convertToArrayIndex(newRow)] = boardArray[convertToArrayIndex(originalColumn)][convertToArrayIndex(originalRow)];
-            boardArray[convertToArrayIndex(originalColumn)][convertToArrayIndex(originalRow)] = null;
+        if(boardArray[convertToArrayIndex(originalRow)][convertToArrayIndex(originalColumn)].checkValidMove(playerNum, originalRow, originalColumn, newRow, newColumn, boardArray)) {
+            boardArray[convertToArrayIndex(newRow)][convertToArrayIndex(newColumn)] = boardArray[convertToArrayIndex(originalRow)][convertToArrayIndex(originalColumn)];
+            boardArray[convertToArrayIndex(originalRow)][convertToArrayIndex(originalColumn)] = null;
+            return true;
         } else {
-            System.out.println("Sorry, invalid move!");
+            System.out.println("PLease try again.");
+            return false;
         }
 
     }
@@ -216,7 +181,7 @@ public class Main {
         return Character.toString((char) (pos + 65));
     }
 
-    public static void drawGameBoard (ChessPiece[][] boardArray) {
+    private static void drawGameBoard(ChessPiece[][] boardArray) {
         // well this might be hard, good luck future self!!!
 
         System.out.println("  |       A       |       B       |       C       |       D       |       E       |       F       |       G       |       H       |");
