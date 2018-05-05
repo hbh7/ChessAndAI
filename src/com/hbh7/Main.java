@@ -161,7 +161,7 @@ public class Main {
             boardArray[convertToArrayIndex(originalRow)][convertToArrayIndex(originalColumn)] = null;
             return true;
         } else {
-            System.out.println("PLease try again.");
+            System.out.println("Please try again.");
             return false;
         }
 
