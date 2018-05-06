@@ -1,5 +1,7 @@
 package com.hbh7;
 
+import static com.hbh7.Util.*;
+
 public class Bishop extends ChessPiece{
 
     private String pieceType = "Bishop";

@@ -43,26 +43,30 @@ public class Pawn extends ChessPiece{
 
             if(owner.equals("White") && toArrayIndex(newRow) - toArrayIndex(originalRow) == 1) {
                 if("Black".equals(boardArray[toArrayIndex(newRow)][toArrayIndex(newColumn)].getOwner())) {
-                    if(toArrayIndex(newColumn) - toArrayIndex(originalColumn) == 1) {
+                    if(Math.abs(toArrayIndex(newColumn) - toArrayIndex(originalColumn)) == 1) {
                         return true;
                     } else {
+                        System.out.println("Error: Invalid Move. Cannot jump piece in front.");
                         return false;
                     }
                 } else if (toArrayIndex(originalColumn) - toArrayIndex(newColumn) == 0) {
                     return true;
                 } else {
+                    System.out.println("Error: Invalid Move. Cannot jump piece in front.");
                     return false;
                 }
             } else if (owner.equals("Black") && toArrayIndex(originalRow) - toArrayIndex(newRow) == 1) {
                 if("White".equals(boardArray[toArrayIndex(newRow)][toArrayIndex(newColumn)].getOwner())) {
-                    if(toArrayIndex(originalColumn) - toArrayIndex(newColumn) == 1) {
+                    if(Math.abs(toArrayIndex(originalColumn) - toArrayIndex(newColumn)) == 1) {
                         return true;
                     } else {
+                        System.out.println("Error: Invalid Move. Cannot jump piece in front.");
                         return false;
                     }
                 } else if (Math.abs(toArrayIndex(originalColumn) - toArrayIndex(newColumn)) == 0) {
                     return true;
                 } else {
+                    System.out.println("Error: Invalid Move. Cannot jump piece in front.");
                     return false;
                 }
             } else {

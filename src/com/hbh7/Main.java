@@ -31,7 +31,7 @@ public class Main {
         ChessPiece blackRook2 = new Rook("Black", "H8");
 
         ChessPiece whiteKnight1 = new Knight("White", "A2");
-        ChessPiece whiteKnight2 = new Knight("white", "A7");
+        ChessPiece whiteKnight2 = new Knight("White", "A7");
         ChessPiece blackKnight1 = new Knight("Black", "H2");
         ChessPiece blackKnight2 = new Knight("Black", "H7");
 
@@ -48,7 +48,7 @@ public class Main {
         ChessPiece whitePawn5 = new Pawn("White", "B5");
         ChessPiece whitePawn6 = new Pawn("White", "B6");
         ChessPiece whitePawn7 = new Pawn("White", "B7");
-        ChessPiece whitePawn8 = new Pawn("white", "B8");
+        ChessPiece whitePawn8 = new Pawn("White", "B8");
         ChessPiece blackPawn1 = new Pawn("Black", "G1");
         ChessPiece blackPawn2 = new Pawn("Black", "G2");
         ChessPiece blackPawn3 = new Pawn("Black", "G3");
@@ -73,7 +73,7 @@ public class Main {
         boardArray[0][6] = whiteKnight2;
         boardArray[0][7] = whiteRook2;
 
-        boardArray[1][0] = whitePawn1;
+        //boardArray[1][0] = whitePawn1;
         boardArray[1][1] = whitePawn2;
         boardArray[1][2] = whitePawn3;
         boardArray[1][3] = whitePawn4;
@@ -82,7 +82,7 @@ public class Main {
         boardArray[1][6] = whitePawn7;
         boardArray[1][7] = whitePawn8;
 
-        boardArray[6][0] = blackPawn1;
+        //boardArray[6][0] = blackPawn1;
         boardArray[6][1] = blackPawn2;
         boardArray[6][2] = blackPawn3;
         boardArray[6][3] = blackPawn4;
@@ -139,6 +139,10 @@ public class Main {
 
     private static boolean doPlayerInput(int playerNum, ChessPiece[][] boardArray) {
 
+        // Bugs:
+        // 2nd number could be double (or more) digits and it just takes the first, no error. Perhaps same for 1st num.
+        // Program crashes if attempting to move nonexistent piece.
+
         System.out.print("Enter an action: [Format: A2 to A3] ");
         Scanner scanner = new Scanner(System.in);
 
@@ -160,7 +164,7 @@ public class Main {
         if(boardArray[toArrayIndex(originalRow)][toArrayIndex(originalColumn)].checkValidMove(playerNum, originalRow, originalColumn, newRow, newColumn, boardArray)) {
             boardArray[toArrayIndex(newRow)][toArrayIndex(newColumn)] = boardArray[toArrayIndex(originalRow)][toArrayIndex(originalColumn)];
             boardArray[toArrayIndex(originalRow)][toArrayIndex(originalColumn)] = null;
-            if(toArrayIndex(newRow) == 0 || toArrayIndex(newRow) == 7) {
+            if((toArrayIndex(newRow) == 0 || toArrayIndex(newRow) == 7) && boardArray[toArrayIndex(newRow)][toArrayIndex(newColumn)].getPieceType().equals("Pawn")){
                 System.out.print("Pawn has reached end of board! Please select a new piece: [Queen, Rook, Knight, Bishop] ");
                 String input = scanner.nextLine();
                 String owner; if(playerNum == 1)

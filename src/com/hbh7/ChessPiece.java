@@ -41,6 +41,10 @@ public abstract class ChessPiece {
         return owner;
     }
 
+    public String getPieceType() {
+        return pieceType;
+    }
+
     public String printInfo() {
 
         return String.format("%s,%s,%s", position, pieceType, owner);
@@ -61,6 +65,8 @@ public abstract class ChessPiece {
         boolean colorValidCheck = checkValidMove_colorValidCheck(playerNum);
         boolean movePatternValidCheck = checkValidMove_movePatternValidCheck(playerNum, originalRow, originalColumn, newRow, newColumn, boardArray);
         boolean spaceValidCheck = checkValidMove_spaceValidCheck(originalRow, originalColumn, newRow, newColumn, boardArray);
+
+        // Should add in code eventually that says new position cant be the same as the old position
 
         return colorValidCheck && movePatternValidCheck && spaceValidCheck;
     }
