@@ -1,6 +1,6 @@
 package com.hbh7;
 
-import java.util.Objects;
+import static com.hbh7.Util.*;
 
 public abstract class ChessPiece {
 
@@ -58,14 +58,14 @@ public abstract class ChessPiece {
         // Run some checks first to make sure it's a valid move
 
         // Checklist
-        boolean colorValidCheck = checkValidMove_colorValidCheck(playerNum, originalRow, originalColumn, newRow, newColumn, boardArray);
+        boolean colorValidCheck = checkValidMove_colorValidCheck(playerNum);
         boolean movePatternValidCheck = checkValidMove_movePatternValidCheck(playerNum, originalRow, originalColumn, newRow, newColumn, boardArray);
-        boolean spaceValidCheck = checkValidMove_spaceValidCheck(playerNum, originalRow, originalColumn, newRow, newColumn, boardArray);
+        boolean spaceValidCheck = checkValidMove_spaceValidCheck(originalRow, originalColumn, newRow, newColumn, boardArray);
 
         return colorValidCheck && movePatternValidCheck && spaceValidCheck;
     }
 
-    public boolean checkValidMove_colorValidCheck(int playerNum, int originalRow, String originalColumn, int newRow, String newColumn, ChessPiece[][] boardArray) {
+    public boolean checkValidMove_colorValidCheck(int playerNum) {
         // Check that the current player has access to move this piece
         if (owner.equals("White") && playerNum == 1) {
             // colorValidCheck Passed
@@ -80,17 +80,17 @@ public abstract class ChessPiece {
     }
     public abstract boolean checkValidMove_movePatternValidCheck(int playerNum, int originalRow, String originalColumn, int newRow, String newColumn, ChessPiece[][] boardArray);
 
-    public boolean checkValidMove_spaceValidCheck(int playerNum, int originalRow, String originalColumn, int newRow, String newColumn, ChessPiece[][] boardArray) {
+    public boolean checkValidMove_spaceValidCheck(int originalRow, String originalColumn, int newRow, String newColumn, ChessPiece[][] boardArray) {
         // Check that the space requested for start and end are both valid
         // Ex: Original space must be a valid position on the board, and the landing space must also be a valid position
         // on the board, and not of the same color.
 
-        if (Main.convertToArrayIndex(originalRow) >= 0 && Main.convertToArrayIndex(originalRow) < 8 &&
-                Main.convertToArrayIndex(originalColumn) >= 0 && Main.convertToArrayIndex(originalColumn) < 8 &&
-                Main.convertToArrayIndex(newRow) >= 0 && Main.convertToArrayIndex(newRow) < 8 &&
-                Main.convertToArrayIndex(newColumn) >= 0 && Main.convertToArrayIndex(newColumn) < 8) {
-            if(boardArray[Main.convertToArrayIndex(newRow)][Main.convertToArrayIndex(newColumn)] != null) {
-                if (!boardArray[Main.convertToArrayIndex(originalRow)][Main.convertToArrayIndex(originalColumn)].getOwner().equals(boardArray[Main.convertToArrayIndex(newRow)][Main.convertToArrayIndex(newColumn)].getOwner())) {
+        if (toArrayIndex(originalRow) >= 0 && toArrayIndex(originalRow) < 8 &&
+                toArrayIndex(originalColumn) >= 0 && toArrayIndex(originalColumn) < 8 &&
+                toArrayIndex(newRow) >= 0 && toArrayIndex(newRow) < 8 &&
+                toArrayIndex(newColumn) >= 0 && toArrayIndex(newColumn) < 8) {
+            if(boardArray[toArrayIndex(newRow)][toArrayIndex(newColumn)] != null) {
+                if (!boardArray[toArrayIndex(originalRow)][toArrayIndex(originalColumn)].getOwner().equals(boardArray[toArrayIndex(newRow)][toArrayIndex(newColumn)].getOwner())) {
                     return true;
                 } else {
                     System.out.println("Error. Invalid Move. Requested space contains a piece of the same color. Cannot overtake.");

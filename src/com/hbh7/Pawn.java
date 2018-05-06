@@ -1,5 +1,7 @@
 package com.hbh7;
 
+import static com.hbh7.Util.*;
+
 public class Pawn extends ChessPiece{
 
     private boolean promoted = false;
@@ -23,19 +25,46 @@ public class Pawn extends ChessPiece{
         // Ex: Pawn can move forward twice on first move, but only forward once on every other move
 
         if (firstMove) {
-            if(owner.equals("White") && (Main.convertToArrayIndex(newRow)-Main.convertToArrayIndex(originalRow) == 1 || Main.convertToArrayIndex(newRow)-Main.convertToArrayIndex(originalRow) == 2)) {
-                return true;
-            } else if (owner.equals("Black") && (Main.convertToArrayIndex(originalRow)-Main.convertToArrayIndex(newRow) == 1 || Main.convertToArrayIndex(originalRow)-Main.convertToArrayIndex(newRow) == 2)) {
-                return true;
+            firstMove = false;
+            if(toArrayIndex(originalColumn) == toArrayIndex(newColumn)) {
+                if (owner.equals("White") && (toArrayIndex(newRow) - toArrayIndex(originalRow) == 1 || toArrayIndex(newRow) - toArrayIndex(originalRow) == 2)) {
+                    return true;
+                } else if (owner.equals("Black") && (toArrayIndex(originalRow) - toArrayIndex(newRow) == 1 || toArrayIndex(originalRow) - toArrayIndex(newRow) == 2)) {
+                    return true;
+                } else {
+                    System.out.println("Error: Invalid Move. That piece cannot move to that space from its current position.");
+                    return false;
+                }
             } else {
-                System.out.println("Error: Invalid Move. That piece cannot move to that space from its current position.");
+                System.out.println("Error: Invalid Move. Please stay within the same column for this piece unless jumping another.");
                 return false;
             }
         } else {
-            if(owner.equals("White") && Main.convertToArrayIndex(newRow)-Main.convertToArrayIndex(originalRow) == 1) {
-                return true;
-            } else if (owner.equals("Black") && Main.convertToArrayIndex(originalRow)-Main.convertToArrayIndex(newRow) == 1) {
-                return true;
+
+            if(owner.equals("White") && toArrayIndex(newRow) - toArrayIndex(originalRow) == 1) {
+                if("Black".equals(boardArray[toArrayIndex(newRow)][toArrayIndex(newColumn)].getOwner())) {
+                    if(toArrayIndex(newColumn) - toArrayIndex(originalColumn) == 1) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else if (toArrayIndex(originalColumn) - toArrayIndex(newColumn) == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else if (owner.equals("Black") && toArrayIndex(originalRow) - toArrayIndex(newRow) == 1) {
+                if("White".equals(boardArray[toArrayIndex(newRow)][toArrayIndex(newColumn)].getOwner())) {
+                    if(toArrayIndex(originalColumn) - toArrayIndex(newColumn) == 1) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else if (Math.abs(toArrayIndex(originalColumn) - toArrayIndex(newColumn)) == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
                 System.out.println("Error: Invalid Move. That piece cannot move to that space from its current position.");
                 return false;

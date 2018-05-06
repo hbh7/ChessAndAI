@@ -1,6 +1,7 @@
 package com.hbh7;
 
 import java.util.Scanner;
+import static com.hbh7.Util.*;
 
 public class Main {
 
@@ -41,11 +42,11 @@ public class Main {
         ChessPiece blackKing1 = new King("King","Black", "H5");
 
         ChessPiece whitePawn1 = new Pawn("White", "B1");
-        ChessPiece whitePawn2 = new Pawn("white", "B2");
+        ChessPiece whitePawn2 = new Pawn("White", "B2");
         ChessPiece whitePawn3 = new Pawn("White", "B3");
-        ChessPiece whitePawn4 = new Pawn("white", "B4");
+        ChessPiece whitePawn4 = new Pawn("White", "B4");
         ChessPiece whitePawn5 = new Pawn("White", "B5");
-        ChessPiece whitePawn6 = new Pawn("white", "B6");
+        ChessPiece whitePawn6 = new Pawn("White", "B6");
         ChessPiece whitePawn7 = new Pawn("White", "B7");
         ChessPiece whitePawn8 = new Pawn("white", "B8");
         ChessPiece blackPawn1 = new Pawn("Black", "G1");
@@ -156,29 +157,15 @@ public class Main {
         int newRow = Integer.parseInt(newPosSplit[1]);
         String newColumn = newPosSplit[0].toUpperCase();
 
-        if(boardArray[convertToArrayIndex(originalRow)][convertToArrayIndex(originalColumn)].checkValidMove(playerNum, originalRow, originalColumn, newRow, newColumn, boardArray)) {
-            boardArray[convertToArrayIndex(newRow)][convertToArrayIndex(newColumn)] = boardArray[convertToArrayIndex(originalRow)][convertToArrayIndex(originalColumn)];
-            boardArray[convertToArrayIndex(originalRow)][convertToArrayIndex(originalColumn)] = null;
+        if(boardArray[toArrayIndex(originalRow)][toArrayIndex(originalColumn)].checkValidMove(playerNum, originalRow, originalColumn, newRow, newColumn, boardArray)) {
+            boardArray[toArrayIndex(newRow)][toArrayIndex(newColumn)] = boardArray[toArrayIndex(originalRow)][toArrayIndex(originalColumn)];
+            boardArray[toArrayIndex(originalRow)][toArrayIndex(originalColumn)] = null;
             return true;
         } else {
             System.out.println("Please try again.");
             return false;
         }
 
-    }
-
-    public static int convertToArrayIndex(int pos) {
-        return pos - 1;
-    }
-
-    public static int convertToArrayIndex(String pos){
-        // A: 65
-        char c = pos.toUpperCase().toCharArray()[0];
-        return ((int) c ) - 65;
-    }
-
-    public static String convertToLetter(int pos){
-        return Character.toString((char) (pos + 65));
     }
 
     private static void drawGameBoard(ChessPiece[][] boardArray) {
@@ -192,7 +179,7 @@ public class Main {
             System.out.print((i+1) + " | ");
             for (int k = 0; k < 8; k++) {
                 if (boardArray[i][k] == null) {
-                    System.out.print(" Empty Space " + " | ");
+                    System.out.print("             " + " | ");
                 } else {
                     System.out.print(boardArray[i][k].displayPiece() + " | ");
                 }
