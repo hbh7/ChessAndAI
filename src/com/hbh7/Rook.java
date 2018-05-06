@@ -12,6 +12,11 @@ public class Rook extends ChessPiece{
     }
 
     public boolean checkValidMove_movePatternValidCheck(int playerNum, int originalRow, String originalColumn, int newRow, String newColumn, ChessPiece[][] boardArray) {
+
+        // Check that the move pattern requested is valid
+        // Ex: Rook can move forward, backwards, left, or right any number of spaces until it collides with the board
+        // border or another piece.
+
         return true;
     }
 

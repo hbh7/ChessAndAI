@@ -12,6 +12,10 @@ public class King extends ChessPiece{
     }
 
     public boolean checkValidMove_movePatternValidCheck(int playerNum, int originalRow, String originalColumn, int newRow, String newColumn, ChessPiece[][] boardArray) {
+
+        // Check that the move pattern requested is valid
+        // Ex: King can move to any of the 8 spaces immediately around it. It can only move one space.
+
         return true;
     }
 
