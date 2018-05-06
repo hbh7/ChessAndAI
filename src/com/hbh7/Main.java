@@ -20,26 +20,26 @@ public class Main {
         H1 H2 H3 H4 H5 H6 H7 H8
          */
 
-        ChessPiece whiteBishop1 = new Bishop("Bishop","White", "A3");
-        ChessPiece whiteBishop2 = new Bishop("Bishop","White", "A6");
-        ChessPiece blackBishop1 = new Bishop("Bishop","Black", "H3");
-        ChessPiece blackBishop2 = new Bishop("Bishop","Black", "H6");
+        ChessPiece whiteBishop1 = new Bishop("White", "A3");
+        ChessPiece whiteBishop2 = new Bishop("White", "A6");
+        ChessPiece blackBishop1 = new Bishop("Black", "H3");
+        ChessPiece blackBishop2 = new Bishop("Black", "H6");
 
-        ChessPiece whiteRook1 = new Rook("Rook","White", "A1");
-        ChessPiece whiteRook2 = new Rook("Rook","White", "A8");
-        ChessPiece blackRook1 = new Rook("Rook","Black", "H1");
-        ChessPiece blackRook2 = new Rook("Rook","Black", "H8");
+        ChessPiece whiteRook1 = new Rook("White", "A1");
+        ChessPiece whiteRook2 = new Rook("White", "A8");
+        ChessPiece blackRook1 = new Rook("Black", "H1");
+        ChessPiece blackRook2 = new Rook("Black", "H8");
 
-        ChessPiece whiteKnight1 = new Knight("Knight","White", "A2");
-        ChessPiece whiteKnight2 = new Knight("Knight","white", "A7");
-        ChessPiece blackKnight1 = new Knight("Knight","Black", "H2");
-        ChessPiece blackKnight2 = new Knight("Knight","Black", "H7");
+        ChessPiece whiteKnight1 = new Knight("White", "A2");
+        ChessPiece whiteKnight2 = new Knight("white", "A7");
+        ChessPiece blackKnight1 = new Knight("Black", "H2");
+        ChessPiece blackKnight2 = new Knight("Black", "H7");
 
-        ChessPiece whiteQueen1 = new Queen("Queen","White", "A4");
-        ChessPiece blackQueen1 = new Queen("Queen","Black", "H4");
+        ChessPiece whiteQueen1 = new Queen("White", "A4");
+        ChessPiece blackQueen1 = new Queen("Black", "H4");
 
-        ChessPiece whiteKing1 = new King("King","White", "A5");
-        ChessPiece blackKing1 = new King("King","Black", "H5");
+        ChessPiece whiteKing1 = new King("White", "A5");
+        ChessPiece blackKing1 = new King("Black", "H5");
 
         ChessPiece whitePawn1 = new Pawn("White", "B1");
         ChessPiece whitePawn2 = new Pawn("White", "B2");
@@ -160,6 +160,29 @@ public class Main {
         if(boardArray[toArrayIndex(originalRow)][toArrayIndex(originalColumn)].checkValidMove(playerNum, originalRow, originalColumn, newRow, newColumn, boardArray)) {
             boardArray[toArrayIndex(newRow)][toArrayIndex(newColumn)] = boardArray[toArrayIndex(originalRow)][toArrayIndex(originalColumn)];
             boardArray[toArrayIndex(originalRow)][toArrayIndex(originalColumn)] = null;
+            if(toArrayIndex(newRow) == 0 || toArrayIndex(newRow) == 7) {
+                System.out.print("Pawn has reached end of board! Please select a new piece: [Queen, Rook, Knight, Bishop] ");
+                String input = scanner.nextLine();
+                String owner; if(playerNum == 1)
+                    owner = "White";
+                else
+                    owner = "Black";
+                String space = newRow + newColumn;
+                switch (input.replaceAll("\\s+","").toLowerCase()) {
+                    case ("queen"):
+                        boardArray[toArrayIndex(newRow)][toArrayIndex(newColumn)] = new Queen(owner, space);
+                        break;
+                    case ("rook"):
+                        boardArray[toArrayIndex(newRow)][toArrayIndex(newColumn)] = new Rook(owner, space);
+                        break;
+                    case ("knight"):
+                        boardArray[toArrayIndex(newRow)][toArrayIndex(newColumn)] = new Knight(owner, space);
+                        break;
+                    case ("bishop"):
+                        boardArray[toArrayIndex(newRow)][toArrayIndex(newColumn)] = new Bishop(owner, space);
+                        break;
+                }
+            }
             return true;
         } else {
             System.out.println("Please try again.");

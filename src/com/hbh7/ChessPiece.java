@@ -78,6 +78,7 @@ public abstract class ChessPiece {
             return false;
         }
     }
+
     public abstract boolean checkValidMove_movePatternValidCheck(int playerNum, int originalRow, String originalColumn, int newRow, String newColumn, ChessPiece[][] boardArray);
 
     public boolean checkValidMove_spaceValidCheck(int originalRow, String originalColumn, int newRow, String newColumn, ChessPiece[][] boardArray) {
