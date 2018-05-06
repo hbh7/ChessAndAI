@@ -72,18 +72,4 @@ public class Pawn extends ChessPiece{
         }
 
     }
-
-    public boolean move(String toPos) {
-        if(firstMove)
-            firstMove = false;
-
-        // Test if valid move
-        if (true) {
-            //position = toPos;
-            return true;
-        } else {
-            return false;
-        }
-
-    }
 }

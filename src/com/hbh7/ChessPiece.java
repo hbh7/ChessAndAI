@@ -106,6 +106,4 @@ public abstract class ChessPiece {
         }
     }
 
-    public abstract boolean move(String toPos);
-
 }
