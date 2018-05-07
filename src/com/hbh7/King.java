@@ -18,7 +18,7 @@ public class King extends ChessPiece{
         // Check that the move pattern requested is valid
         // Ex: King can move to any of the 8 spaces immediately around it. It can only move one space.
 
-        if(Math.abs(toArrayIndex(originalColumn) - toArrayIndex(newColumn)) <= 1 ||
+        if(Math.abs(toArrayIndex(originalColumn) - toArrayIndex(newColumn)) <= 1 &&
                 Math.abs(toArrayIndex(originalRow) - toArrayIndex(newRow)) <= 1) {
             // Eventually make sure the king cant suicide
             return true;

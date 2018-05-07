@@ -18,7 +18,7 @@ public class Rook extends ChessPiece{
         // Check that the move pattern requested is valid
         // Ex: Rook can move forward, backwards, left, or right any number of spaces until it collides with the board
         // border or another piece.
-        
+
         if(toArrayIndex(newRow) >= 0 && toArrayIndex(newRow) <= 7 && toArrayIndex(newColumn) >= 0 && toArrayIndex(newColumn) <= 7) {
             if((originalColumn.equals(newColumn)) ^ (originalRow == newRow)) { // bitwise XOR, must change only one to be true
                 if(originalColumn.equals(newColumn)) {
