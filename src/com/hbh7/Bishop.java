@@ -22,10 +22,6 @@ public class Bishop extends ChessPiece{
         if(Math.abs(toArrayIndex(originalRow)-toArrayIndex(newRow)) == Math.abs(toArrayIndex(originalColumn)-toArrayIndex(newColumn))) {
 
             int distance = Math.abs(toArrayIndex(originalRow)-toArrayIndex(newRow));
-            System.out.println("toArrayIndex(originalRow) = " + toArrayIndex(originalRow));
-            System.out.println("toArrayIndex(originalColumn) = " + toArrayIndex(originalColumn));
-            System.out.println("toArrayIndex(newRow) = " + toArrayIndex(newRow));
-            System.out.println("toArrayIndex(newColumn) = " + toArrayIndex(newColumn));
 
             if(toArrayIndex(newRow) < toArrayIndex(originalRow) && toArrayIndex(newColumn) > toArrayIndex(originalColumn)) { // going to top right
                 System.out.println("Going to top right");
