@@ -32,11 +32,11 @@ public class Pawn extends ChessPiece{
                 } else if (owner.equals("Black") && (toArrayIndex(originalRow) - toArrayIndex(newRow) == 1 || toArrayIndex(originalRow) - toArrayIndex(newRow) == 2)) {
                     return true;
                 } else {
-                    System.out.println("Error: Invalid Move. That piece cannot move to that space from its current position.");
+                    System.out.println("Pawn: Invalid Move. That piece cannot move to that space from its current position.");
                     return false;
                 }
             } else {
-                System.out.println("Error: Invalid Move. Please stay within the same column for this piece unless jumping another.");
+                System.out.println("Pawn: Invalid Move. Please stay within the same column for this piece unless jumping another.");
                 return false;
             }
         } else {
@@ -46,13 +46,13 @@ public class Pawn extends ChessPiece{
                     if(Math.abs(toArrayIndex(newColumn) - toArrayIndex(originalColumn)) == 1) {
                         return true;
                     } else {
-                        System.out.println("Error: Invalid Move. Cannot jump piece in front.");
+                        System.out.println("Pawn: Invalid Move. Cannot jump piece in front.");
                         return false;
                     }
                 } else if (toArrayIndex(originalColumn) - toArrayIndex(newColumn) == 0) {
                     return true;
                 } else {
-                    System.out.println("Error: Invalid Move. Cannot jump piece in front.");
+                    System.out.println("Pawn: Invalid Move. Cannot jump piece in front.");
                     return false;
                 }
             } else if (owner.equals("Black") && toArrayIndex(originalRow) - toArrayIndex(newRow) == 1) {
@@ -60,17 +60,17 @@ public class Pawn extends ChessPiece{
                     if(Math.abs(toArrayIndex(originalColumn) - toArrayIndex(newColumn)) == 1) {
                         return true;
                     } else {
-                        System.out.println("Error: Invalid Move. Cannot jump piece in front.");
+                        System.out.println("Pawn: Invalid Move. Cannot jump piece in front.");
                         return false;
                     }
                 } else if (Math.abs(toArrayIndex(originalColumn) - toArrayIndex(newColumn)) == 0) {
                     return true;
                 } else {
-                    System.out.println("Error: Invalid Move. Cannot jump piece in front.");
+                    System.out.println("Pawn: Invalid Move. Cannot jump piece in front.");
                     return false;
                 }
             } else {
-                System.out.println("Error: Invalid Move. That piece cannot move to that space from its current position.");
+                System.out.println("Pawn: Invalid Move. That piece cannot move to that space from its current position.");
                 return false;
             }
         }

@@ -25,7 +25,6 @@ public class Rook extends ChessPiece{
                 System.out.println("Row is changing, piece is moving vertical");
                 // Row is changing, piece is moving vertical
                 if (toArrayIndex(originalRow) < toArrayIndex(newRow)) { // If moving downwards
-                    System.out.println("Is moving downwards");
                     boolean error = false;
                     for(int i = toArrayIndex(originalRow)+1; i < toArrayIndex(newRow); i++) {
                         if(boardArray[i][toArrayIndex(originalColumn)] != null) {
@@ -33,13 +32,12 @@ public class Rook extends ChessPiece{
                         }
                     }
                     if (error) {
-                        System.out.println("Error: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Rook: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     } else {
                         return true;
                     }
                 } else { // if moving upwards
-                    System.out.println("Is moving upwards");
                     boolean error = false;
                     for(int i = toArrayIndex(originalRow)-1; i > toArrayIndex(newRow); i--) {
                         if(boardArray[i][toArrayIndex(originalColumn)] != null) {
@@ -47,7 +45,7 @@ public class Rook extends ChessPiece{
                         }
                     }
                     if (error) {
-                        System.out.println("Error: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Rook: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     } else {
                         return true;
@@ -64,7 +62,7 @@ public class Rook extends ChessPiece{
                         }
                     }
                     if (error) {
-                        System.out.println("Error: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Rook: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     } else {
                         return true;
@@ -77,7 +75,7 @@ public class Rook extends ChessPiece{
                         }
                     }
                     if (error) {
-                        System.out.println("Error: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Rook: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     } else {
                         return true;
@@ -85,7 +83,7 @@ public class Rook extends ChessPiece{
                 }
             }
         } else {
-            System.out.println("Error: Invalid Move. Cannot move across 2 axis at once.");
+            System.out.println("Rook: Invalid Move. Cannot move across 2 axis at once.");
             return false;
         }
     }

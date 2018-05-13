@@ -23,7 +23,7 @@ public class King extends ChessPiece{
             // Eventually make sure the king cant suicide
             return true;
         } else {
-            System.out.println("Error: Invalid Move. The king cannot move more than 1 space in any direction.");
+            System.out.println("King: Invalid Move. The king cannot move more than 1 space in any direction.");
             return false;
         }
 

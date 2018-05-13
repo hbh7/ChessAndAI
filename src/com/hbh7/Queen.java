@@ -21,13 +21,11 @@ public class Queen extends ChessPiece{
 
 
         // Rook bit
-        
+
         if((originalColumn.equals(newColumn)) ^ (originalRow == newRow)) { // bitwise XOR, must change only one to be true
             if(originalColumn.equals(newColumn)) {
-                System.out.println("Row is changing, piece is moving vertical");
                 // Row is changing, piece is moving vertical
                 if (toArrayIndex(originalRow) < toArrayIndex(newRow)) { // If moving downwards
-                    System.out.println("Is moving downwards");
                     boolean error = false;
                     for(int i = toArrayIndex(originalRow)+1; i < toArrayIndex(newRow); i++) {
                         if(boardArray[i][toArrayIndex(originalColumn)] != null) {
@@ -35,13 +33,12 @@ public class Queen extends ChessPiece{
                         }
                     }
                     if (error) {
-                        System.out.println("Error: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Queen: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     } else {
                         return true;
                     }
                 } else { // if moving upwards
-                    System.out.println("Is moving upwards");
                     boolean error = false;
                     for(int i = toArrayIndex(originalRow)-1; i > toArrayIndex(newRow); i--) {
                         if(boardArray[i][toArrayIndex(originalColumn)] != null) {
@@ -49,7 +46,7 @@ public class Queen extends ChessPiece{
                         }
                     }
                     if (error) {
-                        System.out.println("Error: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Queen: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     } else {
                         return true;
@@ -66,7 +63,7 @@ public class Queen extends ChessPiece{
                         }
                     }
                     if (error) {
-                        System.out.println("Error: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Queen: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     } else {
                         return true;
@@ -79,7 +76,7 @@ public class Queen extends ChessPiece{
                         }
                     }
                     if (error) {
-                        System.out.println("Error: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Queen: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     } else {
                         return true;
@@ -91,47 +88,43 @@ public class Queen extends ChessPiece{
             int distance = Math.abs(toArrayIndex(originalRow) - toArrayIndex(newRow));
 
             if (toArrayIndex(newRow) < toArrayIndex(originalRow) && toArrayIndex(newColumn) > toArrayIndex(originalColumn)) { // going to top right
-                System.out.println("Going to top right");
                 for (int i = 1; i < distance; i++) {
                     if (boardArray[toArrayIndex(originalRow) - i][toArrayIndex(originalColumn) + i] != null) {
-                        System.out.println("Error: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Queen: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     }
                 }
                 return true;
 
             } else if (toArrayIndex(newRow) < toArrayIndex(originalRow) && toArrayIndex(newColumn) < toArrayIndex(originalColumn)) { // going to top left
-                System.out.println("Going to top left");
                 for (int i = 1; i < distance; i++) {
                     if (boardArray[toArrayIndex(originalRow) - i][toArrayIndex(originalColumn) - i] != null) {
-                        System.out.println("Error: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Queen: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     }
                 }
                 return true;
 
             } else if (toArrayIndex(newRow) > toArrayIndex(originalRow) && toArrayIndex(newColumn) > toArrayIndex(originalColumn)) { // going to bottom right
-                System.out.println("Going to bottom right");
                 for (int i = 1; i < distance; i++) {
                     if (boardArray[toArrayIndex(originalRow) + i][toArrayIndex(originalColumn) + i] != null) {
-                        System.out.println("Error: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Queen: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     }
                 }
                 return true;
 
             } else if (toArrayIndex(newRow) > toArrayIndex(originalRow) && toArrayIndex(newColumn) < toArrayIndex(originalColumn)) { // going to bottom left
-                System.out.println("Going to bottom left");
                 for (int i = 1; i < distance; i++) {
                     if (boardArray[toArrayIndex(originalRow) + i][toArrayIndex(originalColumn) - i] != null) {
-                        System.out.println("Error: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Queen: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     }
                 }
                 return true;
 
             } else {
-                System.out.println("Error: Honestly I have no idea how you got here.");
+                System.out.println("Queen: Honestly I have no idea how you got here.");
                 return false;
             }
         } else {

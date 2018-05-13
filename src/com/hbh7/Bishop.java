@@ -24,52 +24,48 @@ public class Bishop extends ChessPiece{
             int distance = Math.abs(toArrayIndex(originalRow)-toArrayIndex(newRow));
 
             if(toArrayIndex(newRow) < toArrayIndex(originalRow) && toArrayIndex(newColumn) > toArrayIndex(originalColumn)) { // going to top right
-                System.out.println("Going to top right");
                 for(int i = 1; i < distance; i++) {
                     if(boardArray[toArrayIndex(originalRow)-i][toArrayIndex(originalColumn)+i] != null) {
-                        System.out.println("Error: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Bishop: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     }
                 }
                 return true;
 
             } else if(toArrayIndex(newRow) < toArrayIndex(originalRow) && toArrayIndex(newColumn) < toArrayIndex(originalColumn)) { // going to top left
-                System.out.println("Going to top left");
                 for(int i = 1; i < distance; i++) {
                     if(boardArray[toArrayIndex(originalRow)-i][toArrayIndex(originalColumn)-i] != null) {
-                        System.out.println("Error: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Bishop: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     }
                 }
                 return true;
 
             } else if(toArrayIndex(newRow) > toArrayIndex(originalRow) && toArrayIndex(newColumn) > toArrayIndex(originalColumn)) { // going to bottom right
-                System.out.println("Going to bottom right");
                 for(int i = 1; i < distance; i++) {
                     if(boardArray[toArrayIndex(originalRow)+i][toArrayIndex(originalColumn)+i] != null) {
-                        System.out.println("Error: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Bishop: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     }
                 }
                 return true;
 
             } else if(toArrayIndex(newRow) > toArrayIndex(originalRow) && toArrayIndex(newColumn) < toArrayIndex(originalColumn)) { // going to bottom left
-                System.out.println("Going to bottom left");
                 for(int i = 1; i < distance; i++) {
                     if(boardArray[toArrayIndex(originalRow)+i][toArrayIndex(originalColumn)-i] != null) {
-                        System.out.println("Error: Invalid Move. Piece(s) obstructing path.");
+                        System.out.println("Bishop: Invalid Move. Piece(s) obstructing path.");
                         return false;
                     }
                 }
                 return true;
 
             } else {
-                System.out.println("Error: Honestly I have no idea how you got here.");
+                System.out.println("Bishop: Honestly I have no idea how you got here.");
                 return false;
             }
 
         } else {
-            System.out.println("Error: Invalid Move. Bishop can only move diagonally.");
+            System.out.println("Bishop: Invalid Move. Bishop can only move diagonally.");
             return false;
         }
 
