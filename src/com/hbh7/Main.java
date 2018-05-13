@@ -72,7 +72,7 @@ public class Main {
         boardArray[0][5] = whiteBishop2;
         boardArray[0][6] = whiteKnight2;
         boardArray[0][7] = whiteRook2;
-        /*
+
         boardArray[1][0] = whitePawn1;
         boardArray[1][1] = whitePawn2;
         boardArray[1][2] = whitePawn3;
@@ -90,7 +90,7 @@ public class Main {
         boardArray[6][5] = blackPawn6;
         boardArray[6][6] = blackPawn7;
         boardArray[6][7] = blackPawn8;
-        */
+
         boardArray[7][0] = blackRook1;
         boardArray[7][1] = blackKnight1;
         boardArray[7][2] = blackBishop1;
