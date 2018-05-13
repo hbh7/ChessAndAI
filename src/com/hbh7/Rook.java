@@ -6,11 +6,11 @@ public class Rook extends ChessPiece{
 
     private String pieceType = "Rook";
     private String owner;
-    private int pointValue = 4;
 
     public Rook(String owner, String position) {
         super("Rook", owner, position);
         this.owner = owner;
+        this.pieceValue = 4;
     }
 
     public boolean checkValidMove_movePatternValidCheck(int playerNum, int originalRow, String originalColumn, int newRow, String newColumn, ChessPiece[][] boardArray) {
@@ -86,5 +86,22 @@ public class Rook extends ChessPiece{
             System.out.println("Rook: Invalid Move. Cannot move across 2 axis at once.");
             return false;
         }
+    }
+
+    public PieceData aiFindSpacesToAttack(ChessPiece[][] boardArray) {
+        // Pawn code, revise for specific moves
+        if(boardArray[arrayPosRow + 1][arrayPosColumn+1] != null) {
+            if(boardArray[arrayPosRow + 1][arrayPosColumn+1].getOwner().equals("White")) {
+                return new PieceData(arrayPosRow+1, arrayPosColumn+1, this.pieceValue);
+            }
+
+        } else if(boardArray[arrayPosRow + 1][arrayPosColumn-1] != null) {
+            if(boardArray[arrayPosRow + 1][arrayPosColumn-1].getOwner().equals("White")) {
+                return new PieceData(arrayPosRow+1, arrayPosColumn-1, this.pieceValue);
+            }
+        } else {
+            return null;
+        }
+        return null;
     }
 }

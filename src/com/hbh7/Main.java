@@ -7,8 +7,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("Welcome to Chess!");
-
         /* Board Layout
         A1 A2 A3 A4 A5 A6 A7 A8
         B1 B2 B3 B4 B5 B6 B7 B8
@@ -106,11 +104,60 @@ public class Main {
             }
         }
 
-        gameLoop(boardArray);
+        beginGame(boardArray);
 
     }
 
-    private static void gameLoop(ChessPiece[][] boardArray) {
+    private static void beginGame(ChessPiece[][] boardArray) {
+        System.out.println("Welcome to Chess!");
+        Scanner scanner = new Scanner(System.in);
+
+        int input = 0;
+        boolean validInput = false;
+        while(!validInput) {
+            System.out.print("1 Player or 2? ");
+            input = scanner.nextInt();
+            scanner.nextLine();
+            if(input == 1 || input == 2) {
+                validInput = true;
+            } else {
+                System.out.println("Invalid input! Please try again!");
+            }
+        }
+        if(input == 1){
+            String input2 = "";
+            validInput = false;
+            while(!validInput) {
+                System.out.print("1 Player mode selected. Use built in AI? [yes, no] ");
+                input2 = scanner.nextLine();
+                if(input2.toLowerCase().equals("yes") || input2.toLowerCase().equals("no")) {
+                    validInput = true;
+                } else {
+                    System.out.println("Invalid input! Please try again!");
+                }
+            }
+
+            if(input2.toLowerCase().equals("yes")){
+                System.out.println("Lovely! Beginning game!");
+                gameLoopAI(boardArray);
+            } else if (input2.toLowerCase().equals("no")) {
+                System.out.println("Well that's unfortunate, because that's not implemented yet. Beginning game with built in AI!");
+                gameLoopAI(boardArray);
+            } else {
+                System.out.println("I'm not really sure what that meant. Assuming you answered yes instead! Beginning game!");
+                gameLoopAI(boardArray);
+            }
+        } else if (input == 2) {
+            System.out.println("2 Player mode selected. Player 1 is white, and player 2 is black. Beginning Game!");
+            gameLoop2P(boardArray);
+        } else {
+            System.out.println("Invalid option!");
+        }
+
+
+    }
+
+    private static void gameLoop2P(ChessPiece[][] boardArray) {
         boolean gameWon = false;
         int playerNum = 1;
 
@@ -131,6 +178,31 @@ public class Main {
             if (playerNum == 1) {
                 playerNum = 2;
             } else {
+                playerNum = 1;
+            }
+
+        }
+    }
+
+    private static void gameLoopAI(ChessPiece[][] boardArray) {
+        boolean gameWon = false;
+        int playerNum = 1;
+        AI ai = new AI(1);
+
+        while(!gameWon) {
+            drawGameBoard(boardArray);
+
+            if(playerNum == 1) {
+                System.out.println("Ready Player One (White)");
+                boolean moveSucceeded = false;
+                while (!moveSucceeded) {
+                    if (doPlayerInput(playerNum, boardArray))
+                        moveSucceeded = true;
+                }
+                playerNum = 2;
+            } else {
+                System.out.println("AI is playing...");
+                ai.doTurn(boardArray);
                 playerNum = 1;
             }
 
@@ -163,11 +235,13 @@ public class Main {
 
         if(boardArray[toArrayIndex(originalRow)][toArrayIndex(originalColumn)].checkValidMove(playerNum, originalRow, originalColumn, newRow, newColumn, boardArray)) {
             boardArray[toArrayIndex(newRow)][toArrayIndex(newColumn)] = boardArray[toArrayIndex(originalRow)][toArrayIndex(originalColumn)];
+            boardArray[toArrayIndex(newRow)][toArrayIndex(newColumn)].setPosition(toArrayIndex(originalRow), toArrayIndex(originalColumn));
             boardArray[toArrayIndex(originalRow)][toArrayIndex(originalColumn)] = null;
             if((toArrayIndex(newRow) == 0 || toArrayIndex(newRow) == 7) && boardArray[toArrayIndex(newRow)][toArrayIndex(newColumn)].getPieceType().equals("Pawn")){
                 System.out.print("Pawn has reached end of board! Please select a new piece: [Queen, Rook, Knight, Bishop] ");
                 String input = scanner.nextLine();
-                String owner; if(playerNum == 1)
+                String owner;
+                if(playerNum == 1)
                     owner = "White";
                 else
                     owner = "Black";

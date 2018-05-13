@@ -12,7 +12,12 @@ public class Util {
         return ((int) c ) - 65;
     }
 
-    public static String convertToLetter(int pos){
+
+    public static int toRow(int pos){
+        return pos + 1;
+    }
+
+    public static String toColumn(int pos){
         return Character.toString((char) (pos + 65));
     }
 

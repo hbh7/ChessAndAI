@@ -6,11 +6,11 @@ public class Knight extends ChessPiece{
 
     private String pieceType = "Knight";
     private String owner;
-    private int pointValue = 2;
 
     public Knight(String owner, String position) {
         super("Knight", owner, position);
         this.owner = owner;
+        this.pieceValue = 2;
     }
 
     public boolean checkValidMove_movePatternValidCheck(int playerNum, int originalRow, String originalColumn, int newRow, String newColumn, ChessPiece[][] boardArray) {
@@ -47,6 +47,23 @@ public class Knight extends ChessPiece{
             System.out.println("Knight: Invalid Move. Can only move in an L pattern.");
             return false;
         }
+    }
+
+    public PieceData aiFindSpacesToAttack(ChessPiece[][] boardArray) {
+        // Pawn code, revise for specific moves
+        if(boardArray[arrayPosRow + 1][arrayPosColumn+1] != null) {
+            if(boardArray[arrayPosRow + 1][arrayPosColumn+1].getOwner().equals("White")) {
+                return new PieceData(arrayPosRow+1, arrayPosColumn+1, this.pieceValue);
+            }
+
+        } else if(boardArray[arrayPosRow + 1][arrayPosColumn-1] != null) {
+            if(boardArray[arrayPosRow + 1][arrayPosColumn-1].getOwner().equals("White")) {
+                return new PieceData(arrayPosRow+1, arrayPosColumn-1, this.pieceValue);
+            }
+        } else {
+            return null;
+        }
+        return null;
     }
 
 }

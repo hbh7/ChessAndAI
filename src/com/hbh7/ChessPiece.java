@@ -4,16 +4,21 @@ import static com.hbh7.Util.*;
 
 public abstract class ChessPiece {
 
-    private String position    = "";
-    private String pieceType   = "";
-    private String owner       = "";
-    private String displayName = "";
-    private int pointValue     = 0;
+    private String position     = "";
+    private String pieceType    = "";
+    private String owner        = "";
+    private String displayName  = "";
+    public int pieceValue = 0;
+    public int arrayPosRow      = 0;
+    public int arrayPosColumn   = 0;
 
     public ChessPiece(String pieceType, String owner, String position) {
         this.pieceType = pieceType;
         this.owner = owner;
         this.position = position;
+
+        this.arrayPosRow = toArrayIndex(position.toCharArray()[0]);
+        this.arrayPosColumn = toArrayIndex(position.toCharArray()[1]);
 
         switch (pieceType.toLowerCase()) {
             case "pawn":
@@ -46,15 +51,16 @@ public abstract class ChessPiece {
     }
 
     public String printInfo() {
-
         return String.format("%s,%s,%s", position, pieceType, owner);
-
     }
 
     public String displayPiece() {
-
         return displayName;
+    }
 
+    public void setPosition(int arrayPosRow, int arrayPosColumn) {
+        this.arrayPosRow = arrayPosRow;
+        this.arrayPosColumn = arrayPosColumn;
     }
 
     public boolean checkValidMove(int playerNum, int originalRow, String originalColumn, int newRow, String newColumn, ChessPiece[][] boardArray) {
@@ -111,5 +117,7 @@ public abstract class ChessPiece {
             return false;
         }
     }
+
+    public abstract PieceData aiFindSpacesToAttack(ChessPiece[][] boardArray);
 
 }

@@ -9,7 +9,6 @@ public class Pawn extends ChessPiece{
     private String promotedType = "none";
     private String pieceType = "Pawn";
     private String owner;
-    private int pointValue = 1;
     private int row;
     private int column;
 
@@ -17,6 +16,7 @@ public class Pawn extends ChessPiece{
     public Pawn(String owner, String position) {
         super("Pawn", owner, position);
         this.owner = owner;
+        this.pieceValue = 1;
     }
 
     public boolean checkValidMove_movePatternValidCheck(int playerNum, int originalRow, String originalColumn, int newRow, String newColumn, ChessPiece[][] boardArray) {
@@ -76,4 +76,21 @@ public class Pawn extends ChessPiece{
         }
 
     }
+
+    public PieceData aiFindSpacesToAttack(ChessPiece[][] boardArray) {
+        if(boardArray[arrayPosRow + 1][arrayPosColumn+1] != null) {
+            if(boardArray[arrayPosRow + 1][arrayPosColumn+1].getOwner().equals("White")) {
+                return new PieceData(arrayPosRow+1, arrayPosColumn+1, this.pieceValue);
+            }
+
+        } else if(boardArray[arrayPosRow + 1][arrayPosColumn-1] != null) {
+            if(boardArray[arrayPosRow + 1][arrayPosColumn-1].getOwner().equals("White")) {
+                return new PieceData(arrayPosRow+1, arrayPosColumn-1, this.pieceValue);
+            }
+        } else {
+            return null;
+        }
+        return null;
+    }
 }
+
