@@ -121,7 +121,7 @@ public class Main {
             if(input == 1 || input == 2) {
                 validInput = true;
             } else {
-                System.out.println("Invalid input! Please enter 1 or 2.");
+                System.out.println("Invalid input! Please enter the number 1 or 2.");
             }
         }
         if(input == 1){
