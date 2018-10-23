@@ -2,7 +2,7 @@
         // Run some checks first to make sure it's a valid move
         boolean moveValid = false;
 
-        // Override atm lol
+        // Override atm haha
         moveValid = true;
 
         return moveValid;
